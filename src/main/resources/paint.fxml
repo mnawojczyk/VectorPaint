@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="pl.sda.maciej.nawojczyk.vector.paint.Controller">
+  <children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0">
+          <children>
+            <Label alignment="CENTER_RIGHT" prefWidth="33.0" text="Fill" />
+            <ColorPicker id="filTool" fx:id="fillColorPicker" />
+            <Label fx:id="strokeTool" alignment="CENTER_RIGHT" prefWidth="83.0" text="Stroke color" />
+            <ColorPicker fx:id="strokeColorPicker" />
+          </children>
+        </HBox>
+      </bottom>
+      <center>
+        <Canvas fx:id="canvas" height="400.0" scaleX="0.8895942295170226" scaleY="1.2254661573423264" width="700.0" />
+      </center>
+      <left>
+        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <Button fx:id="lineTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Line" />
+            <Button fx:id="rectangleTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Rectangle" />
+            <Button fx:id="triangleTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Triangle" />
+            <Button fx:id="circleTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Circle" />
+            <Button fx:id="ellipseTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Ellipse" />
+            <Button fx:id="starTool" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#changeTool" prefHeight="30.0" prefWidth="90.0" text="Star" />
+          </children>
+        </VBox>
+      </left>
+      <top>
+        <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="600.0">
+          <children>
+            <Button maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="CLEAR" />
+            <Button maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="LOAD" />
+            <Button contentDisplay="LEFT" maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="SAVE" />
+          </children>
+        </HBox>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
