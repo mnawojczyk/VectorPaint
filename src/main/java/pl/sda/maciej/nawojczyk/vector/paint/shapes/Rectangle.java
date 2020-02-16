@@ -18,17 +18,19 @@ public class Rectangle extends Shape {
 
     public void draw(GraphicsContext context) {
         context.strokeRect(x, y, w, h);
-        context.setFill(getFillColor());
         context.fillRect(x, y, w, h);
+    }
 
-        context.beginPath();
-        context.moveTo(x, y);
-        context.lineTo(x + 20, y + 20);
-        context.lineTo(x, y + 20);
-        context.lineTo(x + 20, y);
-        context.lineTo(x, y);
-        context.stroke();
-        context.fill();
-        context.closePath();
+    @Override
+    public String getData() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Rectangle;");
+        builder.append(x).append(";");
+        builder.append(y).append(";");
+        builder.append(w).append(";");
+        builder.append(h).append(";");
+        builder.append(getFillColor()).append(";");
+        builder.append(getStrokeColor()).append(";");
+        return builder.toString();
     }
 }

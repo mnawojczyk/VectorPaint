@@ -21,6 +21,19 @@ public class Line extends Shape {
         context.strokeLine(x1, y1, x2, y2);
     }
 
+    @Override
+    public String getData() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Line;");
+        builder.append(x1).append(";");
+        builder.append(y1).append(";");
+        builder.append(x2).append(";");
+        builder.append(y2).append(";");
+        builder.append(getFillColor()).append(";");
+        builder.append(getStrokeColor()).append(";");
+        return builder.toString();
+    }
+
     public double getX1() {
         return x1;
     }

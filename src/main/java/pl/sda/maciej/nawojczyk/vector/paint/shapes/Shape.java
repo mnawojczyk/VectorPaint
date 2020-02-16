@@ -27,4 +27,13 @@ public abstract class Shape {
     public void setStrokeColor(Paint strokeColor) {
         this.strokeColor = strokeColor;
     }
+
+    public void drawShape(GraphicsContext context){
+        context.setStroke(getStrokeColor());
+        context.setFill(getFillColor());
+        draw(context);
+        context.setLineWidth(5);
+    }
+
+    public abstract String getData();
 }
