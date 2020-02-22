@@ -40,7 +40,7 @@
         <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="600.0">
           <children>
             <Button maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="CLEAR" />
-            <Button maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="LOAD" />
+            <Button maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" onAction="#handleLoad" prefHeight="40.0" prefWidth="90.0" text="LOAD" />
             <Button contentDisplay="LEFT" maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="90.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="40.0" prefWidth="90.0" text="SAVE" />
           </children>
         </HBox>

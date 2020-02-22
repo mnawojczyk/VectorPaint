@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import pl.sda.maciej.nawojczyk.vector.paint.io.SDAFileReader;
 import pl.sda.maciej.nawojczyk.vector.paint.shapes.Line;
 import pl.sda.maciej.nawojczyk.vector.paint.shapes.Rectangle;
 import pl.sda.maciej.nawojczyk.vector.paint.shapes.Shape;
@@ -22,6 +23,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class Controller {
@@ -73,6 +75,7 @@ public class Controller {
                 endY = event.getY();
                 System.out.printf("Released x=%f y=%f\n", endX, endY);
                 prepareShape();
+//                applyShape();
                 refreshCanvas();
             }
         });
@@ -155,6 +158,8 @@ public class Controller {
             File file = fileChooser.showSaveDialog(new Stage());
             if (file != null) {
                 saveTextToFile(reduce.get(), file);
+            } else{
+                //todo nie ma co zapisać
             }
         }
     }
@@ -169,5 +174,27 @@ public class Controller {
         }
     }
 
+    @FXML
+    public void handleLoad() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("YOLO files (*.yolo)", "*.yolo");
+        fileChooser.getExtensionFilters().add(extFilter);
 
-}
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        if(file != null){
+            ShapeFactory factory = new ShapeFactory();
+            SDAFileReader reader = new SDAFileReader(file);
+
+            shapeList = reader.readFile().stream()
+                    .map(String -> factory.get(String))
+                    .filter(shape -> shape != null )
+                    .collect(Collectors.toList());
+            refreshCanvas();
+
+        }
+
+        System.out.println(file.getAbsolutePath());
+    }
+    }
+
