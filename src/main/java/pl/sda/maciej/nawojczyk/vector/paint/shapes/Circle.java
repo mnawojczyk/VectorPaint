@@ -3,43 +3,46 @@ package pl.sda.maciej.nawojczyk.vector.paint.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Rectangle extends Shape {
+public class Circle extends Shape {
 
-    private double x;
-    private double y;
-    private double w;
-    private double h;
+    private double xc;
+    private double yc;
+    private double radius;
 
-    public Rectangle(double x1, double y1, double x2, double y2) {
-        this.x = Math.min(x1, x2);
-        this.y = Math.min(y1, y2);
-        this.w = Math.abs(x1 - x2);
-        this.h = Math.abs(y1 - y2);
+    public Circle(double x1, double y1, double x2, double y2) {
+        xc = (x1 + x2)/2;
+        yc = (y1 + y2)/2;
+
+        double width = Math.abs(x1 - x2);
+        double height = Math.abs(y1 - y2);
+        double d = Math.min(width, height);
+        radius = d/2;
 
     }
 
-    private Rectangle(Builder builder){
-        this.x = builder.x1;
-        this.y = builder.y1;
-        this.w = builder.x2;
-        this.h = builder.y2;
+    private Circle(Builder builder){
+        this.xc = builder.x1;
+        this.yc = builder.y1;
+        this.radius = builder.x2;
         setFillColor(builder.fillColor);
         setStrokeColor(builder.strokeColor);
     }
 
     public void draw(GraphicsContext context) {
-        context.strokeOval(x, y, w, h);
-        context.fillOval(x, y, w, h);
+        double x = xc - radius;
+        double y = yc - radius;
+        double size = radius * 2;
+        context.strokeOval(x, y, size, size); //todo
+        context.fillOval(x, y, size, size);
     }
 
     @Override
     public String getData() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Rectangle;");
-        builder.append(x).append(";");
-        builder.append(y).append(";");
-        builder.append(w).append(";");
-        builder.append(h).append(";");
+        builder.append("Circle;");
+        builder.append(xc).append(";");
+        builder.append(yc).append(";");
+        builder.append(radius).append(";");
         builder.append(getFillColor()).append(";");
         builder.append(getStrokeColor()).append(";");
         return builder.toString();
@@ -53,8 +56,8 @@ public class Rectangle extends Shape {
         Color fillColor = Color.CHOCOLATE;
         Color strokeColor = Color.AZURE;
 
-        public Rectangle build(){
-            return new Rectangle(this);
+        public Circle build(){
+            return new Circle(this);
         }
 
         public Builder setX1(double x1) {

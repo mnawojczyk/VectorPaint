@@ -12,10 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pl.sda.maciej.nawojczyk.vector.paint.io.SDAFileReader;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Line;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Rectangle;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Shape;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Triangle;
+import pl.sda.maciej.nawojczyk.vector.paint.shapes.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,6 +99,12 @@ public class Controller {
                 return new Rectangle(startX, startY, endX, endY);
             case TRIANGLE:
                 return new Triangle(startX, startY, endX, endY);
+            case ELLIPSE:
+                return new Ellipse(startX, startY, endX, endY);
+            case CIRCLE:
+                return new Circle(startX, startY, endX, endY);
+            case STAR:
+                return new Star(startX, startY, endX, endY);
         }
     }
 
@@ -196,5 +199,10 @@ public class Controller {
 
         System.out.println(file.getAbsolutePath());
     }
+
+    public void handleClear() {
+        shapeList.clear();
+        refreshCanvas();
     }
+}
 

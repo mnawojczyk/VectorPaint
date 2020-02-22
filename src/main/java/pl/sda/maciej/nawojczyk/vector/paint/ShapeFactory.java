@@ -1,9 +1,6 @@
 package pl.sda.maciej.nawojczyk.vector.paint;
 
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Line;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Rectangle;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Shape;
-import pl.sda.maciej.nawojczyk.vector.paint.shapes.Triangle;
+import pl.sda.maciej.nawojczyk.vector.paint.shapes.*;
 
 public class ShapeFactory {
     public Shape get(String string){
@@ -17,6 +14,8 @@ public class ShapeFactory {
                 return getRectangle(data);
             case "triangle":
                 return getTriangle(data);
+            case "ellipse":
+                return getEllipse(data);
 
         }
         return null;
@@ -77,6 +76,26 @@ public class ShapeFactory {
                 .setPoint1(x1, y1)
                 .setPoint2(x2, y2)
                 .setPoint3(x3, y3)
+                .setStrokeColor(strokeColor)
+                .setFillColor(fillColor);
+
+        return builder.build();
+    }
+
+    private Shape getEllipse(String[] data) {
+        //Line;181.38379833979158;119.21441534158585;439.92864088544445;226.92852821947142;0xffffffff;0xffffffff;
+        double x1 = Double.parseDouble(data[1]);
+        double y1 = Double.parseDouble(data[2]);
+        double x2 = Double.parseDouble(data[3]);
+        double y2 = Double.parseDouble(data[4]);
+        String fillColor = data[5];
+        String strokeColor = data[6];
+
+        Ellipse.Builder builder = new Ellipse.Builder()
+                .setX1(x1)
+                .setY1(y1)
+                .setX2(x2)
+                .setY2(y2)
                 .setStrokeColor(strokeColor)
                 .setFillColor(fillColor);
 

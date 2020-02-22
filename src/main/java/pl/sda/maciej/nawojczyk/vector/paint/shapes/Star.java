@@ -3,43 +3,61 @@ package pl.sda.maciej.nawojczyk.vector.paint.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Rectangle extends Shape {
+public class Star extends Shape {
 
-    private double x;
-    private double y;
-    private double w;
-    private double h;
+    private double xc;
+    private double yc;
+    private double radius;
 
-    public Rectangle(double x1, double y1, double x2, double y2) {
-        this.x = Math.min(x1, x2);
-        this.y = Math.min(y1, y2);
-        this.w = Math.abs(x1 - x2);
-        this.h = Math.abs(y1 - y2);
+    public Star(double x1, double y1, double x2, double y2) {
+        xc = (x1 + x2)/2;
+        yc = (y1 + y2)/2;
+
+        double width = Math.abs(x1 - x2);
+        double height = Math.abs(y1 - y2);
+        double d = Math.min(width, height);
+        radius = d/2;
 
     }
 
-    private Rectangle(Builder builder){
-        this.x = builder.x1;
-        this.y = builder.y1;
-        this.w = builder.x2;
-        this.h = builder.y2;
+    private Star(Builder builder){
+        this.xc = builder.x1;
+        this.yc = builder.y1;
+        this.radius = builder.x2;
         setFillColor(builder.fillColor);
         setStrokeColor(builder.strokeColor);
     }
 
     public void draw(GraphicsContext context) {
-        context.strokeOval(x, y, w, h);
-        context.fillOval(x, y, w, h);
+        context.beginPath();
+        int count = 10;
+
+        context.moveTo(xc, yc - radius);
+
+        for (int i = 0; i < count; i++) {
+            double a = (double) i/count * 2 * Math.PI;
+            double r = i % 2 == 0 ? radius : radius / 2;
+            double xDelta = Math.sin(a) * r;
+            double yDelta = Math.cos(a) * r;
+            double x = xc + xDelta;
+            double y = yc - yDelta;
+
+            context.lineTo(x, y);
+        }
+
+        context.closePath();
+        context.stroke();
+        context.fill();
+
     }
 
     @Override
     public String getData() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Rectangle;");
-        builder.append(x).append(";");
-        builder.append(y).append(";");
-        builder.append(w).append(";");
-        builder.append(h).append(";");
+        builder.append("Circle;");
+        builder.append(xc).append(";");
+        builder.append(yc).append(";");
+        builder.append(radius).append(";");
         builder.append(getFillColor()).append(";");
         builder.append(getStrokeColor()).append(";");
         return builder.toString();
@@ -53,8 +71,8 @@ public class Rectangle extends Shape {
         Color fillColor = Color.CHOCOLATE;
         Color strokeColor = Color.AZURE;
 
-        public Rectangle build(){
-            return new Rectangle(this);
+        public Star build(){
+            return new Star(this);
         }
 
         public Builder setX1(double x1) {

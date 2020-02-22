@@ -3,14 +3,14 @@ package pl.sda.maciej.nawojczyk.vector.paint.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Rectangle extends Shape {
+public class Ellipse extends Shape {
 
     private double x;
     private double y;
     private double w;
     private double h;
 
-    public Rectangle(double x1, double y1, double x2, double y2) {
+    public Ellipse(double x1, double y1, double x2, double y2) {
         this.x = Math.min(x1, x2);
         this.y = Math.min(y1, y2);
         this.w = Math.abs(x1 - x2);
@@ -18,7 +18,7 @@ public class Rectangle extends Shape {
 
     }
 
-    private Rectangle(Builder builder){
+    private Ellipse(Builder builder){
         this.x = builder.x1;
         this.y = builder.y1;
         this.w = builder.x2;
@@ -35,7 +35,7 @@ public class Rectangle extends Shape {
     @Override
     public String getData() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Rectangle;");
+        builder.append("Ellipse;");
         builder.append(x).append(";");
         builder.append(y).append(";");
         builder.append(w).append(";");
@@ -53,8 +53,8 @@ public class Rectangle extends Shape {
         Color fillColor = Color.CHOCOLATE;
         Color strokeColor = Color.AZURE;
 
-        public Rectangle build(){
-            return new Rectangle(this);
+        public Ellipse build(){
+            return new Ellipse(this);
         }
 
         public Builder setX1(double x1) {
